@@ -60,7 +60,7 @@
             background: linear-gradient(rgba(44, 93, 99, 0.85), rgba(44, 93, 99, 0.85)), url('wangan_bg.jpg') no-repeat center center/cover;
             color: #ffffff;
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
         }
 
         .hero-section h1 {
@@ -71,6 +71,53 @@
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        /* 交通方案頁籤切換區塊 */
+        .plan-selector-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background-color: #ffffff;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+        .tab-btn:hover {
+            background-color: #eaf1f2;
+            transform: translateY(-2px);
+        }
+        .tab-btn.active:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* 控制方案內容顯示隱藏 */
+        .plan-content {
+            display: none;
+        }
+        .plan-content.active {
+            display: block;
+        }
 
         h2.section-title {
             text-align: center;
@@ -116,7 +163,6 @@
         }
 
         .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; }
-
         .gallery-item .caption { padding: 10px; font-size: 0.95rem; text-align: center; color: #555555; font-weight: bold; }
 
         .timeline-day {
@@ -143,7 +189,8 @@
         tr.total-row { background-color: #fcf8f6; font-weight: bold; color: var(--accent-color); font-size: 1.2rem; }
 
         .notice-box { background-color: #eaf1f2; border-left: 4px solid var(--primary-color); padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 50px; }
-        .notice-box ul { padding-left: 20px; }
+        .notice-box ul { padding-left: 20px; margin-top: 10px; }
+        .notice-box li { margin-bottom: 8px; }
         footer { background-color: #222222; color: #ffffff; text-align: center; padding: 30px 20px; font-size: 0.9rem; opacity: 0.8; }
     </style>
 </head>
@@ -154,16 +201,16 @@
     </nav>
 
     <div class="audio-player-container">
-        <p>🧘‍♂️ 點擊播放隨團療癒頌缽音效，開啟慢活體驗：</p>
+        <p>🎵 點擊播放精彩旅程背景音樂 (BGM)，開啟慢活體驗：</p>
         <audio controls loop>
-            <source src="singing-bow.MP3" type="audio/mp3">
+            <source src="bgmm.mp3" type="audio/mp3">
             您的瀏覽器不支援音訊播放，請更換瀏覽器。
         </audio>
     </div>
 
     <header class="hero-section">
         <h1>藍海慢活．望安熟齡健康促進之旅</h1>
-        <p>專為長輩量身打造的三天兩夜跳島有氧慢活之旅，在大自然中活化身心、儲存快樂能量！</p>
+        <p>專為長輩量身打造的三天兩夜海島慢活有氧之旅，活化身心、儲存快樂能量！</p>
     </header>
 
     <div class="container">
@@ -172,162 +219,356 @@
             <h2 class="section-title">海島慢活精彩回憶</h2>
             <div class="photo-gallery">
                 <div class="gallery-item">
-                    <img src="216198_0.jpg" alt="獨木舟親水合照">
+                    <img src="sup.png" alt="獨木舟親水合照">
                     <div class="caption">划槳親水 歡樂齊聚</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="LINE_ALBUM__260208_31.jpg" alt="手作DIY互動">
+                    <img src="S__13189168_0.jpg" alt="手作DIY互動">
                     <div class="caption">古法黑糖糕 DIY 體驗</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="20230208140822161815.JPG" alt="金色夕陽海景">
-                    <div class="caption">金色海平線 絕美夕陽</div>
+                    <img src="oh.png" alt="花宅聚落">
+                    <div class="caption">漫遊老宅 回顧歷史與生活</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="209529_0.jpg" alt="聽濤月光海景">
+                    <img src="star.png" alt="聽濤月光海景">
                     <div class="caption">靜謐月夜 聽濤睡眠修復</div>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">三天兩夜慢活海島行程</h2>
-            <div class="timeline">
-                
-                <div class="timeline-day">
-                    <div class="day-header">週五 Day 1：出發與離島整備</div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">晚上</span>
-                        <div class="step-content">高雄搭機飛抵馬公機場 ➔ 安排親切專車接駁 ➔ 入住馬公飯店休息，準備迎接離島假期。</div>
+        <hr style="border: 0; height: 1px; background: #e0e0e0; margin-bottom: 40px;">
+
+        <p class="plan-selector-title">💡 請選擇您想瀏覽的交通往返方案：</p>
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchPlan('plan-A')">🚢 方案一：坐船去．坐船回</button>
+            <button class="tab-btn" onclick="switchPlan('plan-B')">✈️🚢 方案二：飛機去．坐船回</button>
+            <button class="tab-btn" onclick="switchPlan('plan-C')">✈️ 方案三：飛機去．飛機回</button>
+        </div>
+
+
+        <div id="plan-A" class="plan-content active">
+            <section>
+                <h2 class="section-title">【方案一】三天兩夜行程 (坐船去．坐船回)</h2>
+                <div class="timeline">
+                    <div class="timeline-day">
+                        <div class="day-header">週三 Day 1(夜航澎湖)：出發與離島整備 (海路悠閒啟航)</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午6點抵達馬公</span>
+                            <div class="step-content"> ➔ 沿途欣賞壯麗海景與日出 ➔ 抵達後享用澎湖知名餐點前往南海候船室。</div>
+                        </div>
+                    </div>
+                    <div class="timeline-day">
+                        <div class="day-header">週六 Day 2：望安島文化與海龜生態深度體驗</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content">前往南海候船室，搭乘交通船開往純淨的望安島。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">中午</span>
+                            <div class="step-content">島上享用精緻風味午餐(小管麵線)，稍作休息。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content"><strong>親水慢遊與手作活化：</strong>摩托車環島慢遊➔ 經典黑糖糕手作 DIY，透過細部動作活化手部肌肉與認知機能。</div>
+                            <div class="media-grid">
+                                <img src="grass.png" alt="獨木舟體驗">
+                                <video controls muted loop><source src="慢活質感海島活動規劃.mp4" type="video/mp4"></video>
+                                <img src="S__13189168_0.jpg" alt="長輩手作">
+                              
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">傍晚</span>
+                            <div class="step-content"><strong>海邊踏浪窺夕陽：</strong>至平緩黃金沙灘散步慢活踏浪，享受舒適海風與絕美慢動作夕陽落入地平線。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="生成日落海灘慢動作影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">晚上</span>
+                            <div class="step-content">風味晚餐 ➔ <strong>專業夜照潮間帶：</strong>配戴安全頭燈導覽夜間潮間帶生態 ➔ 舒適聆聽海浪聲安心入睡。</div>
+                        </div>
+                    </div>
+                    <div class="timeline-day">
+                        <div class="day-header">週日 Day 3：古厝巡禮與海路滿載返航</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">早晨</span>
+                            <div class="step-content">晨間呼吸新鮮空氣，隨團講師帶領進行健康活化講座、室內健康伸展與心得交流。</div>
+                            <div class="media-grid">
+                                <img src="et.png" alt="在地傳奇交流講座">
+                                <video controls muted loop><source src="生成長輩騎車看日出影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content"><strong>花宅古厝巡禮健行：</strong>漫步國家級歷史花宅聚落，引導正確步行姿勢 ➔ 前往參訪綠蠵龜觀光保育中心。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="綠蠵龜返海影片生成.mp4" type="video/mp4"></video>
+                                <img src="wangan_center.png" alt="綠蠵龜觀光保育中心">
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content">島上午餐 ➔ 搭船返回馬公港 ➔ 特色名產採買 ➔ 前往馬公港搭船返回高雄，圓滿賦歸！</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="timeline-day">
-                    <div class="day-header">週六 Day 2：望安島文化與海洋生態深度體驗</div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">上午</span>
-                        <div class="step-content">享用活力早餐 ➔ 前往南海碼頭，搭乘交通船開往純淨的望安島。</div>
-                    </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">中午</span>
-                        <div class="step-content">島上享用精緻風味午餐，稍作休息。</div>
-                    </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">下午</span>
-                        <div class="step-content"><strong>親水慢遊與手作活化：</strong>摩托車環島慢遊（約2小時） ➔ 經典黑糖糕手作 DIY，透過細部動作活化手部肌肉與認知機能。</div>
-                        <div class="media-grid">
-                            <img src="216187_0.jpg" alt="獨木舟體驗">
-                            <video controls muted loop><source src="慢活質感海島活動規劃.mp4" type="video/mp4"></video>
-                            <img src="S__13189131_0.jpg" alt="長輩手作">
-                            <img src="S__13189140_0.jpg" alt="志工互動">
+            <section>
+                <h2 class="section-title">【方案一】收費標準與費用試算</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>支出項目</th><th>每人費用 (TWD)</th><th>包含內容說明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>高雄-馬公來回船票</td><td>$1,000</td><td>以舒適客輪全額臥鋪艙票價計（敬老票、愛心票身份計算）</td></tr>
+                            <tr><td>往返望安島交通船票</td><td>$400</td><td>南海碼頭 ➔ 望安島 來回交通船船票</td></tr>
+                            <tr><td>島上交通機車費</td><td>$200</td><td>離島租賃使用（二人一車）</td></tr>
+                            <tr><td>海島旅宿住宿費</td><td>$700</td><td>望安島海龜館宿舍一晚</td></tr>
+                            <tr><td>在地精緻餐食費</td><td>$1,300</td><td>包含三天全程四餐（二頓午餐、一頓晚餐、一頓活力早點）</td></tr>
+                            <tr><td>健康促進講師費</td><td>$600</td><td>手作講師、花宅介紹與潮間帶生態鐘點費分攤</td></tr>
+                            <tr class="total-row"><td>每人全包總費用</td><td>$3,600</td><td>全包式經濟慢活旅程（本團體以 10 人規模估算）</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="notice-box">
+                    <h3>💡 方案一 安全與健康貼心叮嚀</h3>
+                    <ul>
+                        <li><strong>防暈船準備：</strong>本方案來回搭乘交通輪，航行時間較長。建議易暈車船的長輩於登船前 30 分鐘服用暈船藥，並隨身攜帶。</li>
+                        <li><strong>行車安全：</strong>考量長輩摩托車駕駛安全，行程中可彈性更換升級為島上環島接駁小巴士。</li>
+                        <li><strong>涉水裝備：</strong>夜照潮間帶具備涉水路段，隨團將備妥拖鞋，確保安全。</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+        <div id="plan-B" class="plan-content">
+            <section>
+                <h2 class="section-title">【方案二】三天兩夜行程 (飛機去．坐船回)</h2>
+                <div class="timeline">
+                    <div class="timeline-day">
+                        <div class="day-header">週三 Day 1：出發與離島整備 (高效啟航)</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">晚上</span>
+                            <div class="step-content">高雄搭機飛抵馬公機場 ➔ 安排親切專車接駁 ➔ 入住馬公飯店休息，迅速開啟度假模式。</div>
                         </div>
                     </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">傍晚</span>
-                        <div class="step-content"><strong>海邊踏浪窺夕陽：</strong>至平緩黃金沙灘散步慢活踏浪，享受舒適海風與絕美慢動作夕陽落入地平線。</div>
-                        <div class="media-grid">
-                            <video controls muted loop><source src="生成日落海灘慢動作影片.mp4" type="video/mp4"></video>
+                    <div class="timeline-day">
+                        <div class="day-header">週四 Day 2：望安島文化與海洋生態深度體驗</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content">享用活力早餐 ➔ 前往南海候船室，搭乘交通船開往純淨的望安島。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">中午</span>
+                            <div class="step-content">島上享用風味午餐(小管麵線)，稍作休息。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content"><strong>親水慢遊與手作活化：</strong>摩托車環島慢遊 ➔ 經典黑糖糕手作 DIY。</div>
+                            <div class="media-grid">
+                                <img src="216187_0.jpg" alt="獨木舟體驗">
+                                <video controls muted loop><source src="慢活質感海島活動規劃.mp4" type="video/mp4"></video>
+                                <img src="S__13189131_0.jpg" alt="長輩手作">
+                                </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">傍晚</span>
+                            <div class="step-content"><strong>海邊踏浪窺夕陽：</strong>至平緩黃金沙灘散步慢活踏浪。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="生成日落海灘慢動作影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">晚上</span>
+                            <div class="step-content">風味晚餐 ➔ <strong>專業夜照潮間帶導覽：</strong>安心聽濤入睡。</div>
                         </div>
                     </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">晚上</span>
-                        <div class="step-content">風味晚餐 ➔ <strong>專業夜照潮間帶：</strong>配戴安全頭燈導覽夜間潮間帶生態 ➔ 舒適聆聽海浪聲安心入睡。</div>
+                    <div class="timeline-day">
+                        <div class="day-header">週日 Day 3：古厝巡禮與滿載返航</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">早晨</span>
+                            <div class="step-content">晨間呼吸新鮮空氣，隨團講師帶領進行健康活化講座、室內健康伸展與心得交流。</div>
+                            <div class="media-grid">
+                                <img src="S__13189168_0.jpg" alt="長輩分桌聆聽室內講座交流">
+                                <video controls muted loop><source src="生成長輩騎車看日出影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content"><strong>花宅古厝巡禮健行：</strong>漫步國家級歷史花宅聚落 ➔ 前往參訪綠蠵龜觀光保育中心。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="綠蠵龜返海影片生成.mp4" type="video/mp4"></video>
+                                <img src="S__13189136_0.jpg" alt="綠蠵龜觀光保育中心">
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content">島上午餐 ➔ 搭船返回馬公港 ➔ 特色名產伴手禮採買 ➔ 前往馬公港搭乘交通船返回高雄，圓滿賦歸！</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="timeline-day">
-                    <div class="day-header">週日 Day 3：古厝巡禮健行賺健康與滿載返航</div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">早晨</span>
-                        <div class="step-content">晨間呼吸新鮮空氣，隨團講師帶領進行健康活化講座、室內健康伸展與心得交流。</div>
-                        <div class="media-grid">
-                            <img src="S__13189168_0.jpg" alt="長輩分桌聆聽室內講座交流">
-                            <video controls muted loop><source src="生成長輩騎車看日出影片.mp4" type="video/mp4"></video>
+            <section>
+                <h2 class="section-title">【方案二】收費標準與費用試算</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>支出項目</th><th>每人費用 (TWD)</th><th>包含內容說明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>去程機票 + 回程船票</td><td>$1,406</td><td>高雄-馬公去程單程機票 ($906) + 馬公-高雄回程單程船票 ($500)</td></tr>
+                            <tr><td>往返望安島交通船票</td><td>$400</td><td>南海碼頭 ➔ 望安島 來回交通船固定班次船票</td></tr>
+                            <tr><td>島上交通機車費</td><td>$200</td><td>離島租賃使用（二人一車，可彈性客製更換為島上巴士）</td></tr>
+                            <tr><td>海島旅宿住宿費</td><td>$2,800</td><td>包含馬公市區飯店一晚、望安島海龜館宿舍一晚</td></tr>
+                            <tr><td>在地精緻餐食費</td><td>$2,300</td><td>包含三天全程四餐</td></tr>
+                            <tr><td>健康促進講師費</td><td>$600</td><td>專業講師全程隨團引導分攤</td></tr>
+                            <tr class="total-row"><td>每人全包總費用</td><td>$7,706</td><td>海空超值混搭方案（本團體以 10 人規模估算）</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="notice-box">
+                    <h3>💡 方案二 安全與健康貼心叮嚀</h3>
+                    <ul>
+                        <li><strong>行李限重與藥物：</strong>去程搭機托運行李限重 10 公斤，個人高血壓、糖尿病等慢性應急藥物請隨身攜帶，切勿托運。</li>
+                        <li><strong>回程防暈船：</strong>回程搭乘交通船返高，請長輩於回程登船前 30 分鐘配合隨團志工指導服用暈船藥。</li>
+                        <li><strong>健步準備：</strong>花宅健行前將有有氧伸展，請穿著包覆性佳的慢跑鞋。</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+        <div id="plan-C" class="plan-content">
+            <section>
+                <h2 class="section-title">【方案三】三天兩夜行程 (飛機去．飛機回)</h2>
+                <div class="timeline">
+                    <div class="timeline-day">
+                        <div class="day-header">週五 Day 1：出發與離島整備 (尊榮快捷)</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">晚上</span>
+                            <div class="step-content">高雄搭機飛抵馬公機場 ➔ 安排親切專車接駁 ➔ 入住馬公飯店休息，保留最高體力。</div>
                         </div>
                     </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">上午</span>
-                        <div class="step-content"><strong>花宅古厝巡禮健行：</strong>漫步國家級歷史花宅聚落，引導正確步行姿勢 ➔ 前往參訪綠蠵龜觀光保育中心，見證保育力量。</div>
-                        <div class="media-grid">
-                            <video controls muted loop><source src="綠蠵龜返海影片生成.mp4" type="video/mp4"></video>
-                            <img src="S__13189136_0.jpg" alt="綠蠵龜觀光保育中心">
+                    <div class="timeline-day">
+                        <div class="day-header">週六 Day 2：望安島文化與海洋生態深度體驗</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content">享用活力早餐 ➔ 前往南海碼頭，搭乘交通船開往純淨的望安島。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">中午</span>
+                            <div class="step-content">島上享用精緻風味午餐，稍作休息。</div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content"><strong>親水慢遊與手作活化：</strong>摩托車環島慢遊（約2小時） ➔ 經典黑糖糕手作 DIY。</div>
+                            <div class="media-grid">
+                                <img src="216187_0.jpg" alt="獨木舟體驗">
+                                <video controls muted loop><source src="慢活質感海島活動規劃.mp4" type="video/mp4"></video>
+                                <img src="S__13189131_0.jpg" alt="長輩手作">
+                                <img src="S__13189140_0.jpg" alt="志工互動">
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">傍晚</span>
+                            <div class="step-content"><strong>海邊踏浪窺夕陽：</strong>至平緩黃金沙灘散步慢活踏浪，享受舒適海風。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="生成日落海灘慢動作影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">晚上</span>
+                            <div class="step-content">風味晚餐 ➔ <strong>專業夜照潮間帶：</strong>導覽夜間潮間帶生態 ➔ 聆聽海浪聲安心入睡。</div>
                         </div>
                     </div>
-                    <div class="itinerary-step">
-                        <span class="time-badge">下午</span>
-                        <div class="step-content">島上午餐 ➔ 搭船返回馬公 ➔ 安排特色名產伴手禮採買 ➔ 搭機返回高雄，圓滿賦歸！</div>
+                    <div class="timeline-day">
+                        <div class="day-header">週日 Day 3：古厝巡禮與雙程搭機舒適返航</div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">早晨</span>
+                            <div class="step-content">隨團講師帶領進行健康活化講座、室內健康伸展與心得交流。</div>
+                            <div class="media-grid">
+                                <img src="S__13189168_0.jpg" alt="長輩分桌聆聽室內講座交流">
+                                <video controls muted loop><source src="生成長輩騎車看日出影片.mp4" type="video/mp4"></video>
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">上午</span>
+                            <div class="step-content"><strong>花宅古厝巡禮健行：</strong>漫步國家級歷史花宅聚落 ➔ 前往參訪綠蠵龜觀光保育中心。</div>
+                            <div class="media-grid">
+                                <video controls muted loop><source src="綠蠵龜返海影片生成.mp4" type="video/mp4"></video>
+                                <img src="S__13189136_0.jpg" alt="綠蠵龜觀光保育中心">
+                            </div>
+                        </div>
+                        <div class="itinerary-step">
+                            <span class="time-badge">下午</span>
+                            <div class="step-content">島上午餐 ➔ 搭船返回馬公 ➔ 特色名產伴手禮採買 ➔ 搭機返回高雄，圓滿賦歸！</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">收費標準與費用試算</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>支出項目</th>
-                            <th>每人費用 (TWD)</th>
-                            <th>包含內容說明</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>高雄-馬公來回機票</td>
-                            <td>$1,812</td>
-                            <td>一般全額票價計（若符合敬老/愛心票身分，每人可折抵優待約 906 元）</td>
-                        </tr>
-                        <tr>
-                            <td>往返交通船票</td>
-                            <td>$540</td>
-                            <td>南海碼頭 ➔ 望安島 來回交通船固定班次船票</td>
-                        </tr>
-                        <tr>
-                            <td>島上交通機車費</td>
-                            <td>$200</td>
-                            <td>離島租賃使用（二人一車，可依個人需求客製更換為島上巴士接駁）</td>
-                        </tr>
-                        <tr>
-                            <td>海島旅宿住宿費</td>
-                            <td>$1,800</td>
-                            <td>包含馬公市區飯店一晚、望安島在地精緻旅宿一晚</td>
-                        </tr>
-                        <tr>
-                            <td>在地精緻餐食費</td>
-                            <td>$1,300</td>
-                            <td>包含三天全程四餐（二頓精美午餐、一頓在地晚餐、一頓活力早點）</td>
-                        </tr>
-                        <tr>
-                            <td>健康促進講師費</td>
-                            <td>$500</td>
-                            <td>專業講師全程隨團引導、花宅有氧健走與潮間帶生態之鐘點費分攤</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td>每人全包總費用</td>
-                            <td>$6,152</td>
-                            <td>全包式健康旅程（本團體以 10 人規模估算)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="notice-box">
-                <h3>💡 隨團安全與健康促進貼心叮嚀</h3>
-                <ul>
-                    <li><strong>行車安全：</strong>考量熟齡長輩摩托車駕駛安全，行程中可彈性更換升級為島上環島接駁小巴士。</li>
-                    <li><strong>涉水裝備：</strong>夜照潮間帶具備涉水與青苔路段，隨團將備妥專業止滑膠鞋，並隨時控管潮汐安全。</li>
-                    <li><strong>健步準備：</strong>花宅巡禮健行前，隨團講師將帶領長輩進行基本有氧伸展，敬請長輩準備包覆性佳的慢跑鞋。</li>
-                </ul>
-            </div>
-        </section>
+            <section>
+                <h2 class="section-title">【方案三】收費標準與費用試算</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>支出項目</th><th>每人費用 (TWD)</th><th>包含內容說明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>高雄-馬公來回機票</td><td>$1,812</td><td>一般全額票價計（若符合敬老/愛心票身分，每人可折抵優待約 906 元）</td></tr>
+                            <tr><td>往返交通船票</td><td>$400</td><td>南海碼頭 ➔ 望安島 來回交通船固定班次船票</td></tr>
+                            <tr><td>島上交通機車費</td><td>$200</td><td>離島租賃使用（二人一車，可依個人需求客製更換為島上巴士接駁）</td></tr>
+                            <tr><td>海島旅宿住宿費</td><td>$2,800</td><td>包含馬公市區飯店一晚、望安島在地精緻旅宿一晚</td></tr>
+                            <tr><td>在地精緻餐食費</td><td>$2,300</td><td>包含三天全程四餐</td></tr>
+                            <tr><td>健康促進講師費</td><td>$600</td><td>專業講師全程隨團引導分攤</td></tr>
+                            <tr class="total-row"><td>每人全包總費用</td><td>$8,112</td><td>全包式尊榮快捷旅程（本團體以 10 人規模估算)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="notice-box">
+                    <h3>💡 方案三 安全與健康貼心叮嚀</h3>
+                    <ul>
+                        <li><strong>身分證件提醒：</strong>雙程搭乘飛機，請長輩務必攜帶身分證正本或健保卡，並提前 1 小時到達機場報到。</li>
+                        <li><strong>行車安全：</strong>考量熟齡長輩摩托車駕駛安全，行程中可彈性更換升級為島上環島接駁小巴士。</li>
+                        <li><strong>健步準備：</strong>花宅巡禮健行前將有基本伸展，敬請長輩準備包覆性佳的慢跑鞋。</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
 
     </div>
 
     <footer>
         <p>© 2026 望安熟齡健康促進旅遊網 | 專業健康促進帶領．長輩安心海島慢活首選</p>
     </footer>
+
+    <script>
+        function switchPlan(planId) {
+            // 隱藏所有方案內容
+            const contents = document.querySelectorAll('.plan-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // 取消所有按鈕的 active 樣式
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 顯示點選的方案內容
+            document.getElementById(planId).classList.add('active');
+
+            // 讓點選的按鈕變成選取狀態
+            // 利用 event.currentTarget 或尋找對應點擊按鈕
+            const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(planId));
+            if(clickedBtn) clickedBtn.classList.add('active');
+            
+            // 自動平滑滾動到切換區塊起點，方便長輩閱讀
+            document.querySelector('.plan-selector-title').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
